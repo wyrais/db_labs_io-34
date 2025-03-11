@@ -1,7 +1,21 @@
 # Виконали
 
-*студент(-ка) 2-го курсу, групи (шифр групи)* **[Імʼя Прізвище]**\
-Telegram: [@a_boldak](https://t.me/a_boldak)  
+*студент 2-го курсу, групи ІО-34* **Шевченко Дмитро**\
+Telegram: [@muddotaa](https://t.me/muddotaa)  
+*студент 2-го курсу, групи ІО-34* **Зернишкин Ілля**\
+Telegram: [@Zenzoik](https://t.me/Zenzoik)  
+*студент 2-го курсу, групи ІО-34* **Юзько Богдан**\
+Telegram: [@bhdnyys](https://t.me/bhdnyys)  
+*студент 2-го курсу, групи ІО-34* **Хабаров Артем**\
+Telegram: [@artemkhabarov1](https://t.me/artemkhabarov1)  
+*студентка 2-го курсу, групи ІО-34* **Кашканова Дарина**\
+Telegram: [@wendigo_25](https://t.me/wendigo_25)  
+*студентка 2-го курсу, групи ІО-34* **Крисько Марія**\
+Telegram: [@masha3happy](https://t.me/masha3happy)  
+*студентка 2-го курсу, групи ІО-34* **Менчинська Діана**\
+Telegram: [@blinyshka](https://t.me/blinyshka)  
+*студентка 2-го курсу, групи ІО-34* **Одинюк Олександра**\
+Telegram: [@wyrais](https://t.me/wyrais) 
 
 # Керівник
 
