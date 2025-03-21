@@ -7,7 +7,7 @@ src = "docs"
 authors = ["Ivan \"ukrustacean\" Dereviankin"]
 
 # Змініть назву проєкта на свою
-title = "Назва проєкту"
+title = "Система аналізу медіа-контенту"
 
 [preprocessor.plantuml]
 plantuml-cmd = "http://www.plantuml.com/plantuml"
