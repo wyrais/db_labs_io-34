@@ -174,6 +174,16 @@
 та робітників, яка здійснюється за допомогою бізнесу.</em></p>
 <p><em>Дається опис бізнес-сценаріїв взаємодії бізнес-акторів, робітників і, можливо, інформаційної системи за допомогою наступної
 специфікації:</em></p>
+<h2 id="password-reset"><a class="header" href="#password-reset">Password Reset</a></h2>
+<div class="table-wrapper"><table><thead><tr><th>ID</th><th>PasswordReset</th></tr></thead><tbody>
+<tr><td><strong>Назва</strong></td><td>Відновлення пароля</td></tr>
+<tr><td><strong>Учасники</strong></td><td>Користувач, Система</td></tr>
+<tr><td><strong>Передумови</strong></td><td>Користувач зареєстрований у системі</td></tr>
+<tr><td><strong>Результат</strong></td><td>Користувач успішно змінює пароль</td></tr>
+<tr><td><strong>Виключні ситуації</strong></td><td>- Неправильний код – InvalidVerificationCodeException <br>- Ліміт запитів – TooManyRequestsException</td></tr>
+<tr><td><strong>Основний сценарій</strong></td><td>1. Користувач натискає "Забули пароль?"<br>2. Система запитує email або номер телефону<br>3. Користувач вводить дані<br>4. Система надсилає код підтвердження<br>5. Користувач вводить код<br>6. Система перевіряє його правильність<br>7. Користувач вводить новий пароль<br>8. Система зберігає новий пароль і повідомляє про успішну зміну</td></tr>
+</tbody></table>
+</div>
 <p><em><strong>ID:</strong></em></p>
 <p><em><strong>НАЗВА:</strong></em></p>
 <p><em><strong>УЧАСНИКИ:</strong></em></p>
