@@ -296,45 +296,45 @@ Telegram: <a href="https://t.me/wyrais">@wyrais</a></p>
 <p><em>Дається опис бізнес-сценаріїв взаємодії бізнес-акторів, робітників і, можливо, інформаційної системи за допомогою наступної
 специфікації:</em></p>
 <h1 id="Опис-бізнес-сценаріїв"><a class="header" href="#Опис-бізнес-сценаріїв">Опис бізнес-сценаріїв</a></h1>
-<div class="table-wrapper"><table><thead><tr><th>ID</th><th>PasswordReset</th></tr></thead><tbody>
-<tr><td><strong>Назва</strong></td><td>Відновлення пароля</td></tr>
-<tr><td><strong>Учасники</strong></td><td>Користувач, Система</td></tr>
-<tr><td><strong>Передумови</strong></td><td>Користувач зареєстрований у системі</td></tr>
-<tr><td><strong>Результат</strong></td><td>Користувач успішно змінює пароль</td></tr>
-<tr><td><strong>Виключні ситуації</strong></td><td>- Неправильний код – InvalidVerificationCodeException <br>- Ліміт запитів – TooManyRequestsException</td></tr>
-<tr><td><strong>Основний сценарій</strong></td><td>1. Користувач натискає "Забули пароль?"<br>2. Система запитує email або номер телефону<br>3. Користувач вводить дані<br>4. Система надсилає код підтвердження<br>5. Користувач вводить код<br>6. Система перевіряє його правильність<br>7. Користувач вводить новий пароль<br>8. Система зберігає новий пароль і повідомляє про успішну зміну</td></tr>
-</tbody></table>
-</div><div class="table-wrapper"><table><thead><tr><th>ID</th><th>ContentUpload</th></tr></thead><tbody>
-<tr><td><strong>Назва</strong></td><td>Завантаження контенту</td></tr>
-<tr><td><strong>Учасники</strong></td><td>Контент-мейкер, Система</td></tr>
-<tr><td><strong>Передумови</strong></td><td>Користувач має право на публікацію контенту</td></tr>
-<tr><td><strong>Результат</strong></td><td>Контент успішно завантажено</td></tr>
-<tr><td><strong>Виключні ситуації</strong></td><td>- Неприпустимий формат – InvalidFileFormatException<br>- Перевищено ліміт розміру – FileTooLargeException</td></tr>
-<tr><td><strong>Основний сценарій</strong></td><td>1. Користувач натискає "Додати контент"<br>2. Завантажує файл або вводить текст<br>3. Вказує категорію, теги та опис<br>4. Система перевіряє формат та розмір файлу<br>5. Контент зберігається в системі<br>6. Користувач отримує підтвердження про успішне завантаження</td></tr>
-</tbody></table>
-</div><div class="table-wrapper"><table><thead><tr><th>ID</th><th>ContentDelete</th></tr></thead><tbody>
-<tr><td><strong>Назва</strong></td><td>Видалення контенту</td></tr>
-<tr><td><strong>Учасники</strong></td><td>Контент-мейкер, Система</td></tr>
-<tr><td><strong>Передумови</strong></td><td>Користувач має право видаляти власний контент</td></tr>
-<tr><td><strong>Результат</strong></td><td>Контент видалено з системи</td></tr>
-<tr><td><strong>Виключні ситуації</strong></td><td>- Контент не знайдено – ContentNotFoundException <br>- Контент заблоковано –  RestrictedContentException</td></tr>
-<tr><td><strong>Основний сценарій</strong></td><td>1. Користувач відкриває список своїх матеріалів<br>2. Обирає контент для видалення<br>3. Підтверджує дію<br>4. Система видаляє контент і повідомляє про успішне видалення</td></tr>
-</tbody></table>
-</div><div class="table-wrapper"><table><thead><tr><th>ID</th><th>ContentModeration</th></tr></thead><tbody>
-<tr><td><strong>Назва</strong></td><td>Модерація контенту</td></tr>
-<tr><td><strong>Учасники</strong></td><td>Модератор, Система</td></tr>
-<tr><td><strong>Передумови</strong></td><td>Контент знаходиться в черзі на перевірку</td></tr>
-<tr><td><strong>Результат</strong></td><td>Контент схвалено або заблоковано</td></tr>
-<tr><td><strong>Виключні ситуації</strong></td><td>- Контент не відповідає правилам – PolicyViolationException<br>- Контент містить шкідливий код – MaliciousContentException</td></tr>
-<tr><td><strong>Основний сценарій</strong></td><td>1. Модератор відкриває список контенту для перевірки<br>2. Аналізує зміст контенту<br>3. Вибирає дію: <strong>схвалити</strong> або <strong>заблокувати</strong><br>4. Якщо контент заблоковано, автор отримує повідомлення</td></tr>
+<div class="table-wrapper"><table><thead><tr><th>ID</th><th>UserRegister</th></tr></thead><tbody>
+<tr><td><strong>Назва:</strong></td><td>Реєстрація користувача</td></tr>
+<tr><td><strong>Учасники:</strong></td><td>Користувач, Система</td></tr>
+<tr><td><strong>Передумови:</strong></td><td>Користувач не зареєстрований в системі</td></tr>
+<tr><td><strong>Результат:</strong></td><td>Користувач успішно реєструється в системі</td></tr>
+<tr><td><strong>Виключні ситуації:</strong></td><td>- Користувач уже існує – <code>UserAlreadyExistsException</code><br>- Некоректний формат електронної пошти – <code>InvalidEmailException</code><br>- Помилка при створенні облікового запису – <code>RegistrationFailedException</code></td></tr>
+<tr><td><strong>Основний сценарій:</strong></td><td>1. Користувач заповнює форму реєстрації.<br>2. Система перевіряє правильність введених даних.<br>3. Якщо дані коректні, система створює обліковий запис для користувача.<br>4. Система надсилає лист для підтвердження реєстрації.<br>5. Користувач підтверджує реєстрацію через лист.<br>6. Система активує акаунт користувача і надає доступ до системи.</td></tr>
 </tbody></table>
 </div><div class="table-wrapper"><table><thead><tr><th>ID</th><th>UserLogin</th></tr></thead><tbody>
 <tr><td><strong>Назва</strong></td><td>Вхід у систему</td></tr>
 <tr><td><strong>Учасники</strong></td><td>Користувач, Система</td></tr>
 <tr><td><strong>Передумови</strong></td><td>Користувач має зареєстрований акаунт</td></tr>
 <tr><td><strong>Результат</strong></td><td>Користувач успішно авторизований</td></tr>
-<tr><td><strong>Виключні ситуації</strong></td><td>- Неправильний пароль – InvalidCredentialsException<br>- Заблокований акаунт – AccountSuspendedException<br>- Підозріла активність – SuspiciousLoginAttemptException</td></tr>
+<tr><td><strong>Виключні ситуації</strong></td><td>- Неправильний пароль – <code>InvalidCredentialsException</code><br>- Заблокований акаунт – <code>AccountSuspendedException</code><br>- Підозріла активність – <code>SuspiciousLoginAttemptException</code></td></tr>
 <tr><td><strong>Основний сценарій</strong></td><td>1. Користувач вводить логін і пароль<br>2. Система перевіряє дані<br>3. Якщо активна двофакторна автентифікація, запитує код<br>4. Користувач вводить код<br>5. Система перевіряє його правильність<br>6. Користувач отримує доступ до акаунту</td></tr>
+</tbody></table>
+</div><div class="table-wrapper"><table><thead><tr><th>ID</th><th>PasswordReset</th></tr></thead><tbody>
+<tr><td><strong>Назва</strong></td><td>Відновлення пароля</td></tr>
+<tr><td><strong>Учасники</strong></td><td>Користувач, Система</td></tr>
+<tr><td><strong>Передумови</strong></td><td>Користувач зареєстрований у системі</td></tr>
+<tr><td><strong>Результат</strong></td><td>Користувач успішно змінює пароль</td></tr>
+<tr><td><strong>Виключні ситуації</strong></td><td>- Неправильний код – <code>InvalidVerificationCodeException</code><br>- Ліміт запитів – <code>TooManyRequestsException</code></td></tr>
+<tr><td><strong>Основний сценарій</strong></td><td>1. Користувач натискає "Забули пароль?"<br>2. Система запитує email або номер телефону<br>3. Користувач вводить дані<br>4. Система надсилає код підтвердження<br>5. Користувач вводить код<br>6. Система перевіряє його правильність<br>7. Користувач вводить новий пароль<br>8. Система зберігає новий пароль і повідомляє про успішну зміну</td></tr>
+</tbody></table>
+</div><div class="table-wrapper"><table><thead><tr><th>ID</th><th>ContentUpload</th></tr></thead><tbody>
+<tr><td><strong>Назва</strong></td><td>Завантаження контенту</td></tr>
+<tr><td><strong>Учасники</strong></td><td>Користувач, Система</td></tr>
+<tr><td><strong>Передумови</strong></td><td>Користувач має право на публікацію контенту</td></tr>
+<tr><td><strong>Результат</strong></td><td>Контент успішно завантажено</td></tr>
+<tr><td><strong>Виключні ситуації</strong></td><td>- Неприпустимий формат – <code>InvalidFileFormatException</code><br>- Перевищено ліміт розміру – <code>FileTooLargeException</code></td></tr>
+<tr><td><strong>Основний сценарій</strong></td><td>1. Користувач натискає "Додати контент"<br>2. Завантажує файл або вводить текст<br>3. Вказує категорію, теги та опис<br>4. Система перевіряє формат та розмір файлу<br>5. Контент зберігається в системі<br>6. Користувач отримує підтвердження про успішне завантаження</td></tr>
+</tbody></table>
+</div><div class="table-wrapper"><table><thead><tr><th>ID</th><th>ContentModeration</th></tr></thead><tbody>
+<tr><td><strong>Назва</strong></td><td>Модерація контенту</td></tr>
+<tr><td><strong>Учасники</strong></td><td>Модератор, Система</td></tr>
+<tr><td><strong>Передумови</strong></td><td>Контент знаходиться в черзі на перевірку</td></tr>
+<tr><td><strong>Результат</strong></td><td>Контент схвалено або заблоковано</td></tr>
+<tr><td><strong>Виключні ситуації</strong></td><td>- Контент не відповідає правилам – <code>PolicyViolationException</code><br>- Контент містить шкідливий код – <code>MaliciousContentException</code></td></tr>
+<tr><td><strong>Основний сценарій</strong></td><td>1. Модератор відкриває список контенту для перевірки<br>2. Аналізує зміст контенту<br>3. Вибирає дію: <strong>схвалити</strong> або <strong>заблокувати</strong><br>4. Якщо контент заблоковано, автор отримує повідомлення</td></tr>
 </tbody></table>
 </div><div class="table-wrapper"><table><thead><tr><th>ID</th><th>ContentSearch</th></tr></thead><tbody>
 <tr><td><strong>Назва:</strong></td><td>Пошук контенту</td></tr>
@@ -352,6 +352,14 @@ Telegram: <a href="https://t.me/wyrais">@wyrais</a></p>
 <tr><td><strong>Виключні ситуації:</strong></td><td>- Користувач не має прав на підписку – <code>PermissionDeniedException</code><br>- Контент недоступний для підписки – <code>ContentUnavailableException</code><br>- Помилка оплати – <code>PaymentFailedException</code></td></tr>
 <tr><td><strong>Основний сценарій:</strong></td><td>1. Користувач відкриває сторінку контенту.<br>2. Користувач натискає кнопку «Підписатися».<br>3. Система перевіряє доступність контенту для підписки.<br>4. Система перевіряє, чи має користувач активну підписку.<br>5. Якщо підписка платна, система ініціює процес оплати.<br>6. У разі успішної оплати або якщо контент безкоштовний, система активує підписку.<br>7. Система повідомляє користувача про успішне оформлення підписки.</td></tr>
 </tbody></table>
+</div><div class="table-wrapper"><table><thead><tr><th>ID</th><th>ContentDelete</th></tr></thead><tbody>
+<tr><td><strong>Назва</strong></td><td>Видалення контенту</td></tr>
+<tr><td><strong>Учасники</strong></td><td>Користувач, Система</td></tr>
+<tr><td><strong>Передумови</strong></td><td>Користувач має завантажений контент</td></tr>
+<tr><td><strong>Результат</strong></td><td>Контент видалено з системи</td></tr>
+<tr><td><strong>Виключні ситуації</strong></td><td>- Контент не знайдено – <code>ContentNotFoundException</code><br>- Контент заблоковано – <code>RestrictedContentException</code></td></tr>
+<tr><td><strong>Основний сценарій</strong></td><td>1. Користувач відкриває список своїх матеріалів<br>2. Обирає контент для видалення<br>3. Підтверджує дію<br>4. Система видаляє контент і повідомляє про успішне видалення</td></tr>
+</tbody></table>
 </div><div class="table-wrapper"><table><thead><tr><th>ID</th><th>UserDelete</th></tr></thead><tbody>
 <tr><td><strong>Назва:</strong></td><td>Видалення користувача</td></tr>
 <tr><td><strong>Учасники:</strong></td><td>Користувач, Система</td></tr>
@@ -359,14 +367,6 @@ Telegram: <a href="https://t.me/wyrais">@wyrais</a></p>
 <tr><td><strong>Результат:</strong></td><td>Користувач успішно видаляється з системи</td></tr>
 <tr><td><strong>Виключні ситуації:</strong></td><td>- Користувач не має прав на видалення – <code>PermissionDeniedException</code><br>- Користувач не знайдений – <code>UserNotFoundException</code><br>- Помилка при видаленні з бази даних – <code>DatabaseErrorException</code></td></tr>
 <tr><td><strong>Основний сценарій:</strong></td><td>1. Користувач ініціює запит на видалення акаунту.<br>2. Система перевіряє права користувача на видалення.<br>3. Якщо права є, система видаляє дані користувача з бази даних.<br>4. Система повідомляє користувача про успішне видалення акаунту.</td></tr>
-</tbody></table>
-</div><div class="table-wrapper"><table><thead><tr><th>ID</th><th>UserRegister</th></tr></thead><tbody>
-<tr><td><strong>Назва:</strong></td><td>Реєстрація користувача</td></tr>
-<tr><td><strong>Учасники:</strong></td><td>Користувач, Система</td></tr>
-<tr><td><strong>Передумови:</strong></td><td>Користувач не зареєстрований в системі</td></tr>
-<tr><td><strong>Результат:</strong></td><td>Користувач успішно реєструється в системі</td></tr>
-<tr><td><strong>Виключні ситуації:</strong></td><td>- Користувач уже існує – <code>UserAlreadyExistsException</code><br>- Некоректний формат електронної пошти – <code>InvalidEmailException</code><br>- Помилка при створенні облікового запису – <code>RegistrationFailedException</code></td></tr>
-<tr><td><strong>Основний сценарій:</strong></td><td>1. Користувач заповнює форму реєстрації.<br>2. Система перевіряє правильність введених даних.<br>3. Якщо дані коректні, система створює обліковий запис для користувача.<br>4. Система надсилає лист для підтвердження реєстрації.<br>5. Користувач підтверджує реєстрацію через лист.<br>6. Система активує акаунт користувача і надає доступ до системи.</td></tr>
 </tbody></table>
 </div>
 <h2 id="Короткий-огляд-продукту"><a class="header" href="#Короткий-огляд-продукту">Короткий огляд продукту</a></h2>
