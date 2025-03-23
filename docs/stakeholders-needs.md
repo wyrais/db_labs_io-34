@@ -36,14 +36,14 @@
 
 ### Посилання
 
-[1] <a name="ref1"></a> [Медіа-простір](https://en.wikipedia.org/wiki/Media_(communication))  
-[2] <a name="ref2"></a> [Тегування](https://www.techtarget.com/searchcontentmanagement/definition/tagging)  
-[3] <a name="ref3"></a> [Функціональні вимоги](https://www.pmi.org/learning/library/functional-requirements-effective-solutions-8488)
-[4] <a name="ref4"></a> [Медіа-аналіз](https://www.studysmarter.co.uk/explanations/media-studies/media-content-analysis/)  
-[5] <a name="ref5"></a> [Профіль користувача](https://www.techopedia.com/definition/1020/user-profile) 
-[6] <a name="ref6"></a> [Скрипт](https://www.w3schools.com/whatis/whatis_script.asp)  
-[7] <a name="ref7"></a> [Перевірка даних](https://www.dataversity.net/data-validation/)  
-[8] <a name="ref8"></a> [Тестування](https://www.softwaretestinghelp.com/what-is-software-testing/)
+1. <a name="ref1"></a> [Медіа-простір](https://en.wikipedia.org/wiki/Media_(communication))  
+2. <a name="ref2"></a> [Тегування](https://www.techtarget.com/searchcontentmanagement/definition/tagging)  
+3. <a name="ref3"></a> [Функціональні вимоги](https://www.pmi.org/learning/library/functional-requirements-effective-solutions-8488)
+4. <a name="ref4"></a> [Медіа-аналіз](https://www.studysmarter.co.uk/explanations/media-studies/media-content-analysis/)  
+5. <a name="ref5"></a> [Профіль користувача](https://www.techopedia.com/definition/1020/user-profile) 
+6. <a name="ref6"></a> [Скрипт](https://www.w3schools.com/whatis/whatis_script.asp)  
+7. <a name="ref7"></a> [Перевірка даних](https://www.dataversity.net/data-validation/)  
+8. <a name="ref8"></a> [Тестування](https://www.softwaretestinghelp.com/what-is-software-testing/)
 
 
 ## Короткий зміст
