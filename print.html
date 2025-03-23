@@ -295,7 +295,7 @@ Telegram: <a href="https://t.me/wyrais">@wyrais</a></p>
 та робітників, яка здійснюється за допомогою бізнесу.</em></p>
 <p><em>Дається опис бізнес-сценаріїв взаємодії бізнес-акторів, робітників і, можливо, інформаційної системи за допомогою наступної
 специфікації:</em></p>
-<h2 id="password-reset"><a class="header" href="#password-reset">Password Reset</a></h2>
+<h1 id="Опис-бізнес-сценаріїв"><a class="header" href="#Опис-бізнес-сценаріїв">Опис бізнес-сценаріїв</a></h1>
 <div class="table-wrapper"><table><thead><tr><th>ID</th><th>PasswordReset</th></tr></thead><tbody>
 <tr><td><strong>Назва</strong></td><td>Відновлення пароля</td></tr>
 <tr><td><strong>Учасники</strong></td><td>Користувач, Система</td></tr>
@@ -304,16 +304,39 @@ Telegram: <a href="https://t.me/wyrais">@wyrais</a></p>
 <tr><td><strong>Виключні ситуації</strong></td><td>- Неправильний код – InvalidVerificationCodeException <br>- Ліміт запитів – TooManyRequestsException</td></tr>
 <tr><td><strong>Основний сценарій</strong></td><td>1. Користувач натискає "Забули пароль?"<br>2. Система запитує email або номер телефону<br>3. Користувач вводить дані<br>4. Система надсилає код підтвердження<br>5. Користувач вводить код<br>6. Система перевіряє його правильність<br>7. Користувач вводить новий пароль<br>8. Система зберігає новий пароль і повідомляє про успішну зміну</td></tr>
 </tbody></table>
+</div><div class="table-wrapper"><table><thead><tr><th>ID</th><th>ContentUpload</th></tr></thead><tbody>
+<tr><td><strong>Назва</strong></td><td>Завантаження контенту</td></tr>
+<tr><td><strong>Учасники</strong></td><td>Контент-мейкер, Система</td></tr>
+<tr><td><strong>Передумови</strong></td><td>Користувач має право на публікацію контенту</td></tr>
+<tr><td><strong>Результат</strong></td><td>Контент успішно завантажено</td></tr>
+<tr><td><strong>Виключні ситуації</strong></td><td>- Неприпустимий формат – InvalidFileFormatException<br>- Перевищено ліміт розміру – FileTooLargeException</td></tr>
+<tr><td><strong>Основний сценарій</strong></td><td>1. Користувач натискає "Додати контент"<br>2. Завантажує файл або вводить текст<br>3. Вказує категорію, теги та опис<br>4. Система перевіряє формат та розмір файлу<br>5. Контент зберігається в системі<br>6. Користувач отримує підтвердження про успішне завантаження</td></tr>
+</tbody></table>
+</div><div class="table-wrapper"><table><thead><tr><th>ID</th><th>ContentDelete</th></tr></thead><tbody>
+<tr><td><strong>Назва</strong></td><td>Видалення контенту</td></tr>
+<tr><td><strong>Учасники</strong></td><td>Контент-мейкер, Система</td></tr>
+<tr><td><strong>Передумови</strong></td><td>Користувач має право видаляти власний контент</td></tr>
+<tr><td><strong>Результат</strong></td><td>Контент видалено з системи</td></tr>
+<tr><td><strong>Виключні ситуації</strong></td><td>- Контент не знайдено – ContentNotFoundException <br>- Контент заблоковано –  RestrictedContentException</td></tr>
+<tr><td><strong>Основний сценарій</strong></td><td>1. Користувач відкриває список своїх матеріалів<br>2. Обирає контент для видалення<br>3. Підтверджує дію<br>4. Система видаляє контент і повідомляє про успішне видалення</td></tr>
+</tbody></table>
+</div><div class="table-wrapper"><table><thead><tr><th>ID</th><th>ContentModeration</th></tr></thead><tbody>
+<tr><td><strong>Назва</strong></td><td>Модерація контенту</td></tr>
+<tr><td><strong>Учасники</strong></td><td>Модератор, Система</td></tr>
+<tr><td><strong>Передумови</strong></td><td>Контент знаходиться в черзі на перевірку</td></tr>
+<tr><td><strong>Результат</strong></td><td>Контент схвалено або заблоковано</td></tr>
+<tr><td><strong>Виключні ситуації</strong></td><td>- Контент не відповідає правилам – PolicyViolationException<br>- Контент містить шкідливий код – MaliciousContentException</td></tr>
+<tr><td><strong>Основний сценарій</strong></td><td>1. Модератор відкриває список контенту для перевірки<br>2. Аналізує зміст контенту<br>3. Вибирає дію: <strong>схвалити</strong> або <strong>заблокувати</strong><br>4. Якщо контент заблоковано, автор отримує повідомлення</td></tr>
+</tbody></table>
+</div><div class="table-wrapper"><table><thead><tr><th>ID</th><th>UserLogin</th></tr></thead><tbody>
+<tr><td><strong>Назва</strong></td><td>Вхід у систему</td></tr>
+<tr><td><strong>Учасники</strong></td><td>Користувач, Система</td></tr>
+<tr><td><strong>Передумови</strong></td><td>Користувач має зареєстрований акаунт</td></tr>
+<tr><td><strong>Результат</strong></td><td>Користувач успішно авторизований</td></tr>
+<tr><td><strong>Виключні ситуації</strong></td><td>- Неправильний пароль – InvalidCredentialsException<br>- Заблокований акаунт – AccountSuspendedException<br>- Підозріла активність – SuspiciousLoginAttemptException</td></tr>
+<tr><td><strong>Основний сценарій</strong></td><td>1. Користувач вводить логін і пароль<br>2. Система перевіряє дані<br>3. Якщо активна двофакторна автентифікація, запитує код<br>4. Користувач вводить код<br>5. Система перевіряє його правильність<br>6. Користувач отримує доступ до акаунту</td></tr>
+</tbody></table>
 </div>
-<p><em><strong>ID:</strong></em></p>
-<p><em><strong>НАЗВА:</strong></em></p>
-<p><em><strong>УЧАСНИКИ:</strong></em></p>
-<p><em><strong>ПЕРЕДУМОВИ:</strong></em></p>
-<p><em><strong>РЕЗУЛЬТАТ:</strong></em></p>
-<p><em><strong>ВИКЛЮЧНІ СИТУАЦІЇ:</strong></em></p>
-<p><em><strong>ОСНОВНИЙ СЦЕНАРІЙ:</strong></em></p>
-<p><em>Кількість сценаріїв визначається у відповідності до специфіки завдання та необхідного
-рівня деталізації (зазвичай, 5-6 сценаріїв).</em></p>
 <h2 id="Короткий-огляд-продукту"><a class="header" href="#Короткий-огляд-продукту">Короткий огляд продукту</a></h2>
 <p><em>[Визначається границя системи та категорії її користувачів. Дається загальна характеристика категорій користувачів
 системи]</em></p>
