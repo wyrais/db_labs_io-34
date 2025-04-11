@@ -32,10 +32,11 @@
         <!-- Custom theme stylesheets -->
 
 
-        <!-- Provide site root to javascript -->
+        <!-- Provide site root and default themes to javascript -->
         <script>
-            var path_to_root = "";
-            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+            const path_to_root = "";
+            const default_light_theme = "light";
+            const default_dark_theme = "navy";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="toc.js"></script>
@@ -45,8 +46,8 @@
         <!-- Work around some values being stored in localStorage wrapped in quotes -->
         <script>
             try {
-                var theme = localStorage.getItem('mdbook-theme');
-                var sidebar = localStorage.getItem('mdbook-sidebar');
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
 
                 if (theme.startsWith('"') && theme.endsWith('"')) {
                     localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
@@ -60,7 +61,8 @@
 
         <!-- Set the theme before any content is loaded, prevents flash -->
         <script>
-            var theme;
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
             try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
             if (theme === null || theme === undefined) { theme = default_theme; }
             const html = document.documentElement;
@@ -73,8 +75,8 @@
 
         <!-- Hide / unhide sidebar before it is displayed -->
         <script>
-            var sidebar = null;
-            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
@@ -110,6 +112,7 @@
                             <i class="fa fa-paint-brush"></i>
                         </button>
                         <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="default_theme">Auto</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
@@ -428,6 +431,26 @@ Telegram: <a href="https://t.me/wyrais">@wyrais</a></p>
 <p>Експлуатаційна придатність є ключовою для довгострокового обслуговування та адаптації системи. Модульна архітектура спрощує оновлення та виправлення помилок, забезпечуючи актуальність та функціональність системи. Сумісність із різними операційними системами та пристроями підвищує доступність, дозволяючи легко інтегрувати систему в різноманітні середовища користувачів і забезпечуючи її відповідність до змінюваних потреб у майбутньому.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="Розроблення-функціональних-вимог-до-системи"><a class="header" href="#Розроблення-функціональних-вимог-до-системи">Розроблення функціональних вимог до системи</a></h1>
 <h2 id="Модель-прецедентів"><a class="header" href="#Модель-прецедентів">Модель прецедентів</a></h2>
+<h3 id="1-Загальна-схема"><a class="header" href="#1-Загальна-схема">1. Загальна схема</a></h3>
+<center>
+![Загальна схема](http://www.plantuml.com/plantuml/png/TPH1RzCm5CVlbVeTl5quPTpHL2tDfbmMAKhbdRYOvb4Y4hkoNReX3Wp43GbESE8xL00ICBRFu7mZdlrKuXRjiEW_lv__VoT-hmzOaYJiuE20kSzkuxxXtqt_tjsw3Ukl-tVkX_k3qjUH6uzEZ1NQhhfsF3BF6xaKMdHCpAtICtlL0XDhCAg3yMWy8cVtqVtktxYx_hNxIHQ1PlaAZ6N2i7oxmWrely2t2waKxHL1wR-rkcjaM3aTCd0douG1Gm4h0tE1IuV1yR6iOD4OguLjb3pqUt7XV-fSBHegeuhA5SpLYq2KmfYrqZLvb9W_KALMJviMa2g450leGDh0bKKSjQo5zH3X40XUHiHKgxK9Db0tWcLAsgtJjCWYS0P2pvyX62EpcAXyr4EqwFnXziWAoOWDd_ebx45fR9U314sdhs2fj3M1oQk8ERlqXJtY38cTRz0gKUybyJY92jwcK3L4zvOLE_VIuRqWvE-Fteb7PRe67oCiB9HkW4vJn4bJ8ME3QMp0vPFTAe-h5msigMd8zk8yQlalRjDVunXzSj_xj-whs-0utVOV6Cx0dRl1aVf5ZSfPychY1o0DWgCu3IeTp6XE0fwpf4ucrBseLwX3g-A37INQbqhsY1qVmwK5MKycEnEYjvbXes_Bic17c4fx6ZblLpNuJJpaKB_X0xrR_7UMxN5Kezpidjpj28Veb7pJ32MTmZTFNlbJd5NtED30q_vJCk3PeBDYq7W7gCcvueEUHfgJ3czKX1aumS3mU_ON)
+</center>
+<h3 id="2-Схема-гостя"><a class="header" href="#2-Схема-гостя">2. Схема гостя</a></h3>
+<center>
+![Схема гостя](http://www.plantuml.com/plantuml/png/TL0rLaKn4As_xM7mwj7ZLBXBXUPyTqaUKk7kBXqh-EwsXScEcE3w91cVUsyJQ9e6DJKrW4zo1zDOmXXW4YjoGsxACvLH5HPZDnSi8dI_psBaNdSWn2BC3ymgWf59iUgp0rksyw3VRZ5QZ2zHwDNjN03ZqAjYEhTR6RT3xJItHs32xdHp4M727Gp0R00VQTywvbvsRc42Ot8FA92Mro-XTRb5rgOy9kyCi4mGvGR6C4-nsrhQeGR-t34KTBh_7Ou98bl158LfBBb0NXoByXOBP2KmXtd0BEsegawrWmP-tJ5XjmQNQCqOutmv6B6fJPVKdiAo6a2ZJkKrK7kCbbV8FNu5EgRKw0NDfdM-eYPR9_jbEXtGJF4nQ8NsTlkAi0TidPsgevki5_6V0G00)
+</center>
+<h3 id="3-Схема-користувача"><a class="header" href="#3-Схема-користувача">3. Схема користувача</a></h3>
+<center>
+![Схема користувача](http://www.plantuml.com/plantuml/png/RPArckfG481hx1s6grMuzJMqng6wUhuuJcIbMfSAEhhr1rXtUuKvRxHpaXHOF2F_w6UG90dYyJZW4T_2Qtp2Cy07VE6hUCVN-3hVm0iyupia5bPa7GkdROTPZjjknS9sq-pqcCNQm6IdQrMTvPOAR56rksqr5ew5FIdKRTK2PaDTY5nRbPcjmhkIrTLCCi-p3jFLjjfnu7S7J_2LOfzHr4S-mcTyvaCG8affamIF8iTt0bRAZx7gFOKvAWH8mTadtnUYaCCS2XzuZ7ffZ96rkelqpgkAoI3NxJX1HWTuJOxNU4bkGxm2VAAVAwBudIBskeWXUkL1i_dS6BMgCais9dalV9Vw-Z3VlJhkNH5LVI7ljkZFE6MVRul-y86OJr0XaOASddmaJMwLZpni9IUQNmV9bP9UxqfvI2If0_0DVlmmEtBBLTHaqZDHfAHV1JqW8RNejvgRjlDr5kaglavTejmKeQ8LeIzlGTu0)
+</center>
+<h3 id="4-Схема-аналітика"><a class="header" href="#4-Схема-аналітика">4. Схема аналітика</a></h3>
+<center>
+![Схема аналітика](http://www.plantuml.com/plantuml/png/RL0rGWGn5AtNxl0NhKAFE_H3YOwixuxb3zRWDKxF2N2tA_pSY9_WCXfvcdOGGa0-dmSwLbjqHOzq2dHAJ_m-g2ErJhTqpqkCqCXSUa2Y7MFIgEVIibRnGpks6s2x6CGJk5GlWBrGa46Za4ldqcOL1dsxlYGHR0c3UZMH1TUM1MWo6yi560vyBFW8KpxjVFZIZTfG1y3Mp_J48Qxqjybe37-J62_uXTZ60bY5C8XHQerz3QOhjVgcS4FdRpKCUzpwnXvTrAJlt4EwLslqGi_CNl-FFshf2eCWOj5del0muQ7M7RUWeuyHq0KzFOL5BFXUNv-63_283-mL)
+</center>
+<h3 id="5-Схема-адміна"><a class="header" href="#5-Схема-адміна">5. Схема адміна</a></h3>
+<center>
+![Схема адміна](http://www.plantuml.com/plantuml/png/XP8rkXin483hHtSO1wizmZDtOP2ReEALsPAN0bKuwSBCS04pmnL6DufcJU5ds1tylw73O5aMH28HmA_wFdPmZ7N09zZ6iNw54woJZs9sDkEUprq_g5PsDhroKTQuowl0ixvop_WtAWBuDU6fgjZPtDaChP2mgqK9t8D4ceo19xBS4x2FrIgAsv1IqXVIX_CINsCTc-O_qNVCiwllwXU0Gvo6XWuzzn67fNwYBDEFALkut2ygIQGF9gcD7NthNupKiPyOfqLLNHN0FE5IyZFic-GwZlJZHRA-XNrzMz_HTwa-_H3h8UGq-mboZ4kU5v3YliWhjoWyGdt7cScbhbQmUbX7Yw3wbNvi9jqFOST-xYh9vQgSfpWovG-fa_yLasG_prPU-Odm1UlOmyQSO_xDlLZiPrQcAAx1KPKF6_fCGwNwgI6Q4e7Qff7Ne6_FMSQxx2bpb3QUI8DbMr6Q-Ke-pTOoTKvoO6JgOYcpXLmXUH7Z6dbEZGjfXrVu0m00)
+</center>
 <p>В цьому файлі необхідно перелічити всі документи, розроблені в проекті та дати посилання на них.</p>
 <p><em>Модель прецедентів повинна містити загальні оглядові діаграми та специфікації прецедентів.</em></p>
 <p>Вбудовування зображень діаграм здійснюється з використанням сервісу <a href="https://plantuml.com/">plantuml.com</a>.</p>
