@@ -9,6 +9,7 @@
 
 ###  Діаграма використання для Гостя
 На рис. 2 зображені усі можливості гостя.
+
 [![Діаграма використання для Гостя](https://img.plantuml.biz/plantuml/svg/SoWkIImgAStDuULIBCb8pKrLICefJKqlIgpavKfCBialKhWm-UAqYuqNcoxsy7BnSYaWyHLqTUqKD2uikB3ruXImICE53HVRWBBz2XTsNTW7vEu02pTVs0IKQB-mGHEh_aaNMozEkx15uMApmiL6Y9OBMo_ikTWCLEwGcfS2T1m0)](https://editor.plantuml.com/uml/SoWkIImgAStDuULIBCb8pKrLICefJKqlIgpavKfCBialKhWm-UAqYuqNcoxsy7BnSYaWyHLqTUqKD2uikB3ruXImICE53HVRWBBz2XTsNTW7vEu02pTVs0IKQB-mGHEh_aaNMozEkx15uMApmiL6Y9OBMo_ikTWCLEwGcfS2T1m0)
 <p align="center"><em>Рисунок 2 – Діаграма можливостей гостя</em></p>
 
@@ -22,7 +23,7 @@
 На рис. 4 зображені усі можливості технічного експерта.
 
 [![Діаграма використання для Технічного експерта](https://img.plantuml.biz/plantuml/svg/SoWkIImgAStDuULIBCb8pKrLICefJKqlIgpavKfCBialKhWmzSAkYuqNzb_OUh7XOXCl5o-NWWAQe8Akhfs2neKv5_PTs08IkR3XOjl5QHVx5Ixi0WhjlTXqOIk8lDYiYLlpf0ixW9etNDWDKWjK3T4CD6l7nKQGrWkRWAQsNzYW2NA1GsfU2jZD0000)](https://editor.plantuml.com/uml/SoWkIImgAStDuULIBCb8pKrLICefJKqlIgpavKfCBialKhWmzSAkYuqNzb_OUh7XOXCl5o-NWWAQe8Akhfs2neKv5_PTs08IkR3XOjl5QHVx5Ixi0WhjlTXqOIk8lDYiYLlpf0ixW9etNDWDKWjK3T4CD6l7nKQGrWkRWAQsNzYW2NA1GsfU2jZD0000)
-<p align="center"><em>Рисунок 3 – Діаграма можливостей технічного експерта</em></p>
+<p align="center"><em>Рисунок 4 – Діаграма можливостей технічного експерта</em></p>
 
 
 ## Сценарії використання для незареєстрованого користувача
