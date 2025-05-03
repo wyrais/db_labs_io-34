@@ -17,6 +17,6 @@
 ## Реляційна схема
 <div align="center">
 
-<img src="./%D0%A0%D0%B5%D0%BB%D1%8F%D1%86%D1%96%D0%B9%D0%BD%D0%B0%20%D1%81%D1%85%D0%B5%D0%BC%D0%B0.png">
+<img src="/assets/Lab4/%D0%A0%D0%B5%D0%BB%D1%8F%D1%86%D1%96%D0%B9%D0%BD%D0%B0%20%D1%81%D1%85%D0%B5%D0%BC%D0%B0.png">
 
 </div>
