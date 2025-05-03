@@ -17,6 +17,6 @@
 ## Реляційна схема
 <div align="center">
 
-![Реляційна схема](https://raw.githubusercontent.com/muddotaa/db_labs_io-34/main/assets/Lab4/Реляційна%20схема.png)
+![Реляційна схема](/db_labs_io-34/assets/Lab4/Реляційна%20схема.png)
 
 </div>
