@@ -176,3 +176,24 @@ router.post('/', createUser);
 
 export default router;
 ```
+
+## Налаштування сервера
+```
+import express from 'express';
+import userRouter from './routes/userRoutes.js';
+import projectRouter from './routes/projectRoutes.js';
+import taskRouter from './routes/taskRoutes.js';
+
+const app = express();
+
+app.use(express.json());
+
+app.use('/api/users', userRouter);
+app.use('/api/projects', projectRouter);
+app.use('/api/tasks', taskRouter);
+
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
+```
