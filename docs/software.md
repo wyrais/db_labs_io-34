@@ -197,3 +197,21 @@ app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
 ```
+
+## Запус сервера 
+
+```
+import app from './app.js';
+import dotenv from 'dotenv';
+
+dotenv.config();
+
+const startServer = () => {
+  const port = process.env.PORT || 3000;
+  app.listen(port, () => {
+    console.log(`Server is running on port ${port}`);
+  });
+};
+
+startServer();
+```
