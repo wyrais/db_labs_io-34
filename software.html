@@ -339,7 +339,7 @@ app.listen(PORT, () =&gt; {
   console.log(`Server running on port ${PORT}`);
 });
 </code></pre>
-<h2 id="Запус-сервера"><a class="header" href="#Запус-сервера">Запус сервера</a></h2>
+<h2 id="Запуск-сервера"><a class="header" href="#Запуск-сервера">Запуск сервера</a></h2>
 <pre><code>import app from './app.js';
 import dotenv from 'dotenv';
 
@@ -353,6 +353,49 @@ const startServer = () =&gt; {
 };
 
 startServer();
+</code></pre>
+<h2 id="Маршрути-для-user-та-mediacontent"><a class="header" href="#Маршрути-для-user-та-mediacontent">Маршрути для User та MediaContent</a></h2>
+<h3 id="Маршрути-для-user"><a class="header" href="#Маршрути-для-user">Маршрути для User</a></h3>
+<pre><code>// routes/userRoutes.js
+
+import express from 'express';
+import {
+  registerUser,
+  listUsers,
+  getUser,
+  updateUser,
+  removeUser,
+} from '../controllers/userController.js';
+
+const userRouter = express.Router();
+
+userRouter.post('/user', registerUser);
+userRouter.get('/user', listUsers);
+userRouter.get('/user/:id', getUser);
+userRouter.patch('/user/:id', updateUser);
+userRouter.delete('/user/:id', removeUser);
+
+export default userRouter;
+</code></pre>
+<h3 id="Маршрути-для-mediacontent"><a class="header" href="#Маршрути-для-mediacontent">Маршрути для MediaContent</a></h3>
+<pre><code>import express from 'express';
+import {
+  createMediaContent,
+  getMediaContents,
+  getMediaContent,
+  updateMediaContent,
+  deleteMediaContent,
+} from '../controllers/mediaContentController.js';
+
+const mediaContentRouter = express.Router();
+
+mediaContentRouter.post('/content', createMediaContent);
+mediaContentRouter.get('/content', getMediaContents);
+mediaContentRouter.get('/content/:id', getMediaContent);
+mediaContentRouter.patch('/content/:id', updateMediaContent);
+mediaContentRouter.delete('/content/:id', deleteMediaContent);
+
+export default mediaContentRouter;
 </code></pre>
 
                     </main>
