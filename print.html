@@ -696,6 +696,34 @@ export const createUser = async (username, email, passwordHash) =&gt; {
   return result.rows[0];
 };
 </code></pre>
+<h2 id="Контролери-для-обробки-запитів"><a class="header" href="#Контролери-для-обробки-запитів">Контролери для обробки запитів</a></h2>
+<pre><code>import * as userModel from '../models/userModel.js';
+
+export const getUser = async (req, res) =&gt; {
+  try {
+    const user = await userModel.getUserById(req.params.id);
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+    res.json(user);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+export const createUser = async (req, res) =&gt; {
+  try {
+    const newUser = await userModel.createUser(
+      req.body.username,
+      req.body.email,
+      req.body.password
+    );
+    res.status(201).json(newUser);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+};
+</code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="Тестування-працездатності-системи"><a class="header" href="#Тестування-працездатності-системи">Тестування працездатності системи</a></h1>
 <p><em>В цьому розділі необхідно вказати засоби тестування, навести вихідні коди тестів та результати тестування.</em></p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="Висновки-1"><a class="header" href="#Висновки-1">Висновки</a></h1>
