@@ -174,5 +174,5 @@ const router = express.Router();
 router.get('/:id', getUser);
 router.post('/', createUser);
 
-export default router
+export default router;
 ```
