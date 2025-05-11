@@ -339,6 +339,21 @@ app.listen(PORT, () =&gt; {
   console.log(`Server running on port ${PORT}`);
 });
 </code></pre>
+<h2 id="Запус-сервера"><a class="header" href="#Запус-сервера">Запус сервера</a></h2>
+<pre><code>import app from './app.js';
+import dotenv from 'dotenv';
+
+dotenv.config();
+
+const startServer = () =&gt; {
+  const port = process.env.PORT || 3000;
+  app.listen(port, () =&gt; {
+    console.log(`Server is running on port ${port}`);
+  });
+};
+
+startServer();
+</code></pre>
 
                     </main>
 
