@@ -198,7 +198,7 @@ app.listen(PORT, () => {
 });
 ```
 
-## Запус сервера 
+## Запуск сервера 
 
 ```
 import app from './app.js';
@@ -214,4 +214,53 @@ const startServer = () => {
 };
 
 startServer();
+```
+## Маршрути для User та MediaContent
+
+
+### Маршрути для User
+
+```
+// routes/userRoutes.js
+
+import express from 'express';
+import {
+  registerUser,
+  listUsers,
+  getUser,
+  updateUser,
+  removeUser,
+} from '../controllers/userController.js';
+
+const userRouter = express.Router();
+
+userRouter.post('/user', registerUser);
+userRouter.get('/user', listUsers);
+userRouter.get('/user/:id', getUser);
+userRouter.patch('/user/:id', updateUser);
+userRouter.delete('/user/:id', removeUser);
+
+export default userRouter;
+```
+### Маршрути для MediaContent
+
+```
+import express from 'express';
+import {
+  createMediaContent,
+  getMediaContents,
+  getMediaContent,
+  updateMediaContent,
+  deleteMediaContent,
+} from '../controllers/mediaContentController.js';
+
+const mediaContentRouter = express.Router();
+
+mediaContentRouter.post('/content', createMediaContent);
+mediaContentRouter.get('/content', getMediaContents);
+mediaContentRouter.get('/content/:id', getMediaContent);
+mediaContentRouter.patch('/content/:id', updateMediaContent);
+mediaContentRouter.delete('/content/:id', deleteMediaContent);
+
+export default mediaContentRouter;
 ```
