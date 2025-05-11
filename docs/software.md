@@ -368,3 +368,121 @@ export const findUserByEmail = async (email) => {
   return result.rows[0];
 };
 ```
+## Контролери для MediaContent
+```
+
+import handleAsync from '../utils/handleAsync.js';
+import {
+  insertMediaContent,
+  getAllMediaContents,
+  getMediaContentById,
+  updateMediaContentById,
+  deleteMediaContentById,
+} from '../models/mediaContentModel.js';
+import AppError from '../utils/appError.js';
+import { validateRequiredContentFields } from '../utils/validator.js';
+
+export const createMediaContent = handleAsync(async (req, res) => {
+  const contentData = req.body;
+  validateRequiredContentFields(contentData);
+  const newContent = await insertMediaContent(contentData);
+  res.status(201).json({ status: 'success', data: newContent });
+});
+
+export const getMediaContents = handleAsync(async (req, res) => {
+  const contents = await getAllMediaContents();
+  res.status(200).json({ status: 'success', data: contents });
+});
+
+export const getMediaContent = handleAsync(async (req, res) => {
+  const { id } = req.params;
+  const content = await getMediaContentById(id);
+  if (!content) {
+    throw new AppError('MediaContentNotFoundException', 404);
+  }
+  res.status(200).json({ status: 'success', data: content });
+});
+
+export const updateMediaContent = handleAsync(async (req, res) => {
+  const { id } = req.params;
+  const updates = req.body;
+  const content = await getMediaContentById(id);
+  if (!content) {
+    throw new AppError('MediaContentNotFoundException', 404);
+  }
+  const updated = await updateMediaContentById(id, updates);
+  res.status(200).json({ status: 'success', data: updated });
+});
+
+export const deleteMediaContent = handleAsync(async (req, res) => {
+  const { id } = req.params;
+  const deleted = await deleteMediaContentById(id);
+  if (!deleted) {
+    throw new AppError('MediaContentNotFoundException', 404);
+  }
+  res.status(200).json({ status: 'success', message: 'Media content deleted successfully' });
+});
+```
+## Взаємодія з базою даних для MediaContent
+```
+import pool from '../db.js';
+import AppError from '../utils/appError.js';
+
+export const insertMediaContent = async ({
+  title,
+  description,
+  body,
+  content_type,
+  user_id,
+}) => {
+  const result = await pool.query(
+    `INSERT INTO MediaContent (title, description, body, content_type, user_id)
+     VALUES ($1, $2, $3, $4, $5) RETURNING *`,
+    [title, description, body, content_type, user_id]
+  );
+  return result.rows[0];
+};
+
+export const getAllMediaContents = async () => {
+  const result = await pool.query('SELECT * FROM MediaContent');
+  return result.rows;
+};
+
+export const getMediaContentById = async (id) => {
+  const result = await pool.query('SELECT * FROM MediaContent WHERE id = $1', [id]);
+  return result.rows[0] || null;
+};
+
+export const updateMediaContentById = async (id, data) => {
+  const fields = Object.keys(data);
+  const values = Object.values(data);
+  if (!fields.length) {
+    throw new AppError('NoFieldsToUpdateException', 400);
+  }
+  const setClause = fields.map((f, i) => `${f} = $${i + 1}`).join(', ');
+  const result = await pool.query(
+    `UPDATE MediaContent SET ${setClause} WHERE id = $${fields.length + 1} RETURNING *`,
+    [...values, id]
+  );
+  return result.rows[0];
+};
+
+export const deleteMediaContentById = async (id) => {
+  const result = await pool.query(
+    'DELETE FROM MediaContent WHERE id = $1 RETURNING *',
+    [id]
+  );
+  return result.rows[0] || null;
+};
+```
+## Мідлвар для обробки помилок
+```
+const errorHandler = (err, req, res, next) => {
+  console.error(err);
+  err.statusCode = err.statusCode || 500;
+  err.status = err.status || 'error';
+  res.status(err.statusCode).json({ status: err.status, message: err.message });
+};
+
+export default errorHandler;
+```
