@@ -1027,6 +1027,51 @@ export const deleteMediaContentById = async (id) =&gt; {
 
 export default errorHandler;
 </code></pre>
+<h2 id="Обгортка-над-функціями-для-перенаправлення-помилок"><a class="header" href="#Обгортка-над-функціями-для-перенаправлення-помилок">Обгортка над функціями для перенаправлення помилок</a></h2>
+<pre><code>
+const handleAsync = (fn) =&gt; (req, res, next) =&gt; {
+  fn(req, res, next).catch(next);
+};
+
+export default handleAsync;
+</code></pre>
+<h2 id="Валідатори-для-перевірки-вхідних-даних"><a class="header" href="#Валідатори-для-перевірки-вхідних-даних">Валідатори для перевірки вхідних даних</a></h2>
+<pre><code>
+import AppError from './appError.js';
+
+export const validateRequiredFields = ({
+  first_name,
+  last_name,
+  email,
+  password_hash,
+}) =&gt; {
+  if (!first_name || !last_name || !email || !password_hash) {
+    throw new AppError('DataMissingException', 400);
+  }
+};
+
+export const validateRequiredContentFields = ({
+  title,
+  body,
+  content_type,
+  user_id,
+}) =&gt; {
+  if (!title || !body || !content_type || !user_id) {
+    throw new AppError('RequiredFieldsMissingException', 400);
+  }
+};
+</code></pre>
+<h2 id="Модифікований-клас-помилки"><a class="header" href="#Модифікований-клас-помилки">Модифікований клас помилки</a></h2>
+<pre><code>
+export default class AppError extends Error {
+  constructor(message, statusCode) {
+    super(message);
+    this.statusCode = statusCode;
+    this.status = `${statusCode}`.startsWith('4') ? 'fail' : 'error';
+    Error.captureStackTrace(this, this.constructor);
+  }
+}
+</code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="Тестування-працездатності-системи"><a class="header" href="#Тестування-працездатності-системи">Тестування працездатності системи</a></h1>
 <p><em>В цьому розділі необхідно вказати засоби тестування, навести вихідні коди тестів та результати тестування.</em></p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="Висновки-1"><a class="header" href="#Висновки-1">Висновки</a></h1>
