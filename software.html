@@ -248,6 +248,23 @@ INSERT INTO Comments (task_id, user_id, content) VALUES
 INSERT INTO Attachments (task_id, filename, filepath, filetype, filesize) VALUES
 (1, 'design_concepts.pdf', '/uploads/design_concepts.pdf', 'application/pdf', 2540000);
 </code></pre>
+<h1 id="restfull-сервіс-для-управління-даними"><a class="header" href="#restfull-сервіс-для-управління-даними">RESTfull сервіс для управління даними</a></h1>
+<h2 id="Підключення-до-бази-даних"><a class="header" href="#Підключення-до-бази-даних">Підключення до бази даних</a></h2>
+<pre><code>import pg from 'pg';
+import dotenv from 'dotenv';
+
+dotenv.config();
+
+const pool = new pg.Pool({
+  user: process.env.DB_USER,
+  host: process.env.DB_HOST,
+  database: process.env.DB_NAME,
+  password: process.env.DB_PASSWORD,
+  port: process.env.DB_PORT,
+});
+
+export default pool;
+</code></pre>
 
                     </main>
 
