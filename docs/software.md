@@ -114,3 +114,22 @@ const pool = new pg.Pool({
 export default pool;
 ```
 
+## Моделі для роботи з даними
+
+```
+import pool from '../db.js';
+
+export const getUserById = async (id) => {
+  const result = await pool.query('SELECT * FROM Users WHERE id = $1', [id]);
+  return result.rows[0];
+};
+
+export const createUser = async (username, email, passwordHash) => {
+  const result = await pool.query(
+    'INSERT INTO Users (username, email, password_hash) VALUES ($1, $2, $3) RETURNING *',
+    [username, email, passwordHash]
+  );
+  return result.rows[0];
+};
+```
+
