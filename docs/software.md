@@ -486,3 +486,51 @@ const errorHandler = (err, req, res, next) => {
 
 export default errorHandler;
 ```
+## Обгортка над функціями для перенаправлення помилок
+```
+
+const handleAsync = (fn) => (req, res, next) => {
+  fn(req, res, next).catch(next);
+};
+
+export default handleAsync;
+```
+## Валідатори для перевірки вхідних даних
+```
+
+import AppError from './appError.js';
+
+export const validateRequiredFields = ({
+  first_name,
+  last_name,
+  email,
+  password_hash,
+}) => {
+  if (!first_name || !last_name || !email || !password_hash) {
+    throw new AppError('DataMissingException', 400);
+  }
+};
+
+export const validateRequiredContentFields = ({
+  title,
+  body,
+  content_type,
+  user_id,
+}) => {
+  if (!title || !body || !content_type || !user_id) {
+    throw new AppError('RequiredFieldsMissingException', 400);
+  }
+};
+```
+## Модифікований клас помилки
+```
+
+export default class AppError extends Error {
+  constructor(message, statusCode) {
+    super(message);
+    this.statusCode = statusCode;
+    this.status = `${statusCode}`.startsWith('4') ? 'fail' : 'error';
+    Error.captureStackTrace(this, this.constructor);
+  }
+}
+```
