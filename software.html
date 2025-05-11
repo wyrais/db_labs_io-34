@@ -309,6 +309,17 @@ export const createUser = async (req, res) =&gt; {
   }
 };
 </code></pre>
+<h2 id="Маршрутизація"><a class="header" href="#Маршрутизація">Маршрутизація</a></h2>
+<pre><code>import express from 'express';
+import { getUser, createUser } from '../controllers/userController.js';
+
+const router = express.Router();
+
+router.get('/:id', getUser);
+router.post('/', createUser);
+
+export default router
+</code></pre>
 
                     </main>
 

@@ -724,6 +724,17 @@ export const createUser = async (req, res) =&gt; {
   }
 };
 </code></pre>
+<h2 id="Маршрутизація"><a class="header" href="#Маршрутизація">Маршрутизація</a></h2>
+<pre><code>import express from 'express';
+import { getUser, createUser } from '../controllers/userController.js';
+
+const router = express.Router();
+
+router.get('/:id', getUser);
+router.post('/', createUser);
+
+export default router
+</code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="Тестування-працездатності-системи"><a class="header" href="#Тестування-працездатності-системи">Тестування працездатності системи</a></h1>
 <p><em>В цьому розділі необхідно вказати засоби тестування, навести вихідні коди тестів та результати тестування.</em></p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="Висновки-1"><a class="header" href="#Висновки-1">Висновки</a></h1>
