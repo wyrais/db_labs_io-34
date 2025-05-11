@@ -264,3 +264,107 @@ mediaContentRouter.delete('/content/:id', deleteMediaContent);
 
 export default mediaContentRouter;
 ```
+## Контролери для User
+
+```
+import {
+  createProfile,
+  fetchAllProfiles,
+  findUserById,
+  updateProfileById,
+  deleteProfileById,
+  findUserByEmail,
+} from '../models/userModel.js';
+import AppError from '../utils/appError.js';
+import handleAsync from '../utils/handleAsync.js';
+import { validateRequiredFields } from '../utils/validator.js';
+
+export const registerUser = handleAsync(async (req, res) => {
+  const userData = req.body;
+  validateRequiredFields(userData);
+  const existing = await findUserByEmail(userData.email);
+  if (existing) {
+    throw new AppError('AlreadyRegisteredException', 400);
+  }
+  await createProfile(userData);
+  res.status(201).json({ status: 'success', message: 'User registered successfully' });
+});
+
+export const listUsers = handleAsync(async (req, res) => {
+  const users = await fetchAllProfiles();
+  res.status(200).json({ status: 'success', message: users });
+});
+
+export const getUser = handleAsync(async (req, res) => {
+  const { id } = req.params;
+  const user = await findUserById(id);
+  if (!user) {
+    throw new AppError('UserNotFoundException', 404);
+  }
+  res.status(200).json({ status: 'success', message: user });
+});
+
+export const updateUser = handleAsync(async (req, res) => {
+  const { id } = req.params;
+  const updates = req.body;
+  const user = await findUserById(id);
+  if (!user) {
+    throw new AppError('UserNotFoundException', 404);
+  }
+  const updated = await updateProfileById(id, updates);
+  res.status(200).json({ status: 'success', message: 'User updated successfully', updatedUser: updated });
+});
+
+export const removeUser = handleAsync(async (req, res) => {
+  const { id } = req.params;
+  const user = await findUserById(id);
+  if (!user) {
+    throw new AppError('UserNotFoundException', 404);
+  }
+  await deleteProfileById(id);
+  res.status(200).json({ status: 'success', message: 'User deleted successfully' });
+});
+```
+## Взаємодія з базою даних для User
+
+```
+import pool from '../db.js';
+
+export const createProfile = async ({ first_name, last_name, email, password_hash }) => {
+  const query = `
+    INSERT INTO Users (first_name, last_name, email, password_hash)
+    VALUES ($1, $2, $3, $4)
+  `;
+  return await pool.query(query, [first_name, last_name, email, password_hash]);
+};
+
+export const fetchAllProfiles = async () => {
+  const result = await pool.query('SELECT * FROM Users');
+  return result.rows;
+};
+
+export const findUserById = async (id) => {
+  const result = await pool.query('SELECT * FROM Users WHERE id = $1', [id]);
+  return result.rows[0];
+};
+
+export const updateProfileById = async (id, data) => {
+  const fields = Object.keys(data);
+  const values = Object.values(data);
+  const setClause = fields.map((f, i) => `${f} = $${i + 1}`).join(', ');
+  const result = await pool.query(
+    `UPDATE Users SET ${setClause} WHERE id = $${fields.length + 1} RETURNING *`,
+    [...values, id]
+  );
+  return result.rows[0];
+};
+
+export const deleteProfileById = async (id) => {
+  await pool.query('DELETE FROM Users WHERE id = $1', [id]);
+};
+
+export const findUserByEmail = async (email) => {
+  const result = await pool.query('SELECT * FROM Users WHERE email = $1', [email]);
+  return result.rows[0];
+};
+```
