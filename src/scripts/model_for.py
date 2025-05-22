@@ -16,8 +16,7 @@ class UserInDB(UserBase):
     last_login: Optional[datetime] = None
 
     class Config:
-        from_attributes = True  # для Pydantic v2
-        # orm_mode = True  # для Pydantic v1
+        from_attributes = True  
 
 # === PROJECTS ===
 class ProjectBase(BaseModel):
@@ -34,8 +33,7 @@ class ProjectInDB(ProjectBase):
     id: int
 
     class Config:
-        from_attributes = True  # для Pydantic v2
-        # orm_mode = True  # для Pydantic v1
+        from_attributes = True 
 
 # === TASKS ===
 class TaskBase(BaseModel):
@@ -54,8 +52,7 @@ class TaskInDB(TaskBase):
     created_at: datetime
 
     class Config:
-        from_attributes = True  # для Pydantic v2
-        # orm_mode = True  # для Pydantic v1
+        from_attributes = True  
 
 # === COMMENTS ===
 class CommentBase(BaseModel):
@@ -71,8 +68,7 @@ class CommentInDB(CommentBase):
     created_at: datetime
 
     class Config:
-        from_attributes = True  # для Pydantic v2
-        # orm_mode = True  # для Pydantic v1
+        from_attributes = True  
 
 # === USER TASKS (Many-to-Many) ===
 class UserTaskCreate(BaseModel):
@@ -83,8 +79,7 @@ class UserTaskInDB(UserTaskCreate):
     assigned_at: datetime
 
     class Config:
-        from_attributes = True  # для Pydantic v2
-        # orm_mode = True  # для Pydantic v1
+        from_attributes = True  
 
 # === ATTACHMENTS ===
 class AttachmentBase(BaseModel):
@@ -102,5 +97,4 @@ class AttachmentInDB(AttachmentBase):
     uploaded_at: datetime
 
     class Config:
-        from_attributes = True  # для Pydantic v2
-        # orm_mode = True  # для Pydantic v1
+        from_attributes = True  
