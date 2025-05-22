@@ -2,11 +2,9 @@ import requests
 import json
 from datetime import date
 
-# Базовый URL API
 BASE_URL = "http://localhost:8000"
 
 def test_health():
-    """Тест health check эндпоинта"""
     print("\n=== Testing Health Check ===")
     try:
         response = requests.get(f"{BASE_URL}/health")
@@ -18,7 +16,6 @@ def test_health():
         return False
 
 def test_get_users():
-    """Тест получения списка пользователей"""
     print("\n=== Testing GET /users ===")
     try:
         response = requests.get(f"{BASE_URL}/users")
@@ -34,7 +31,6 @@ def test_get_users():
         return False
 
 def test_get_user_by_id(user_id=1):
-    """Тест получения пользователя по ID"""
     print(f"\n=== Testing GET /users/{user_id} ===")
     try:
         response = requests.get(f"{BASE_URL}/users/{user_id}")
@@ -46,7 +42,6 @@ def test_get_user_by_id(user_id=1):
         return False
 
 def test_create_user():
-    """Тест создания нового пользователя"""
     print("\n=== Testing POST /users ===")
     new_user = {
         "username": "test_user",
@@ -63,7 +58,6 @@ def test_create_user():
         return False
 
 def test_get_projects():
-    """Тест получения списка проектов"""
     print("\n=== Testing GET /projects ===")
     try:
         response = requests.get(f"{BASE_URL}/projects")
@@ -79,7 +73,6 @@ def test_get_projects():
         return False
 
 def test_create_project():
-    """Тест создания нового проекта"""
     print("\n=== Testing POST /projects ===")
     new_project = {
         "title": "Test Project",
@@ -98,7 +91,6 @@ def test_create_project():
         return False
 
 def test_api_docs():
-    """Проверка доступности документации API"""
     print("\n=== Testing API Documentation ===")
     try:
         response = requests.get(f"{BASE_URL}/docs")
@@ -112,7 +104,6 @@ def test_api_docs():
         return False
 
 def run_all_tests():
-    """Запуск всех тестов"""
     print("Starting API Tests...")
     print(f"Testing API at: {BASE_URL}")
     
