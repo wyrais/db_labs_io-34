@@ -3,11 +3,9 @@ import sys
 from improved_config import test_connection
 
 def main():
-    """Запуск FastAPI сервера с проверкой подключения к БД"""
     
     print("=== Starting FastAPI Server ===")
     
-    # Проверка подключения к базе данных
     print("\nChecking database connection...")
     if not test_connection():
         print("\n❌ Failed to connect to database!")
@@ -25,8 +23,7 @@ def main():
     print("- Swagger UI: http://localhost:8000/docs")
     print("- ReDoc: http://localhost:8000/redoc")
     print("\nPress CTRL+C to stop the server\n")
-    
-    # Запуск сервера
+
     uvicorn.run(
         "main:app",
         host="0.0.0.0",
