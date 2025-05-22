@@ -4,7 +4,7 @@ import logging
 from improved_config import get_connection
 from model_for import UserInDB, UserCreate, ProjectInDB, ProjectCreate
 
-# Настройка логирования
+
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
@@ -15,7 +15,6 @@ def fetch_all(table: str):
     try:
         with get_connection() as conn:
             cursor = conn.cursor()
-            # Используем правильный регистр для таблиц
             query = f"SELECT * FROM {table}"
             logger.info(f"Executing query: {query}")
             cursor.execute(query)
@@ -56,7 +55,6 @@ def insert_data(query: str, values: tuple):
 # ===================== STARTUP EVENT =====================
 @app.on_event("startup")
 async def startup_event():
-    """Проверка подключения к БД при запуске"""
     try:
         with get_connection() as conn:
             cursor = conn.cursor()
@@ -103,7 +101,6 @@ def create_project(project: ProjectCreate):
 # ===================== HEALTH CHECK =====================
 @app.get("/health", tags=["Health"])
 def health_check():
-    """Эндпоинт для проверки работоспособности API и БД"""
     try:
         with get_connection() as conn:
             cursor = conn.cursor()
