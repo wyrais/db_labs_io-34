@@ -1,6 +1,6 @@
 # Тестування працездатності системи
 
 ## Перелік можливих запитів
-
-![1](assets/lab6/0.png)
-
+<div align="center">
+<img src= "https://github.com/wyrais/db_labs_io-34/blob/main/assets/lab6/0.png" />
+</div>
