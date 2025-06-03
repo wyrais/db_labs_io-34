@@ -8,7 +8,7 @@
 ## Методи GET, POST, PUT, DELETE для таблиці Users
 
 <div align="center">
-<img src= "https://github.com/wyrais/db_labs_io-34/blob/main/assets/lab6/11.png" />
+<img src= "https://raw.github.com/wyrais/db_labs_io-34/blob/main/assets/lab6/11.png" />
 </div>
 
 <div align="center">
